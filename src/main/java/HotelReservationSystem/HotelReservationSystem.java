@@ -31,7 +31,7 @@ public class HotelReservationSystem {
 		hotelList.add(new Hotel(name, regularWeekdayRate, regularWeekendRate,rewardWeekdayRate,rewardWeekendRate,rating));
 	}
 
-	public Hotel findCheapestHotel(String date1, String date2) {
+	public Hotel findCheapestHotel(String date1, String date2, boolean isReward) {
 		LocalDate startDate = LocalDate.parse(date1);
 		LocalDate endDate = LocalDate.parse(date2).plusDays(1);
 		int noOfWeekdaysCounter=0;
@@ -47,7 +47,7 @@ public class HotelReservationSystem {
 		Hotel hotel = hotelList.stream().sorted((h1,h2) -> {
 			return h2.getRating() - h1.getRating();
 		}).min((h1,h2) -> {
-			return (h1.getRegularWeekdayRate()*noOfWeekdays+h1.getRegularWeekendRate()*noOfWeekends) - (h2.getRegularWeekdayRate()*noOfWeekdays+h2.getRegularWeekendRate()*noOfWeekends);
+			return (h1.getWeekdayRate(isReward)*noOfWeekdays+h1.getWeekendRate(isReward)*noOfWeekends) - (h2.getWeekdayRate(isReward)*noOfWeekdays+h2.getWeekendRate(isReward)*noOfWeekends);
 		}).orElse(null);
 
 		

@@ -22,7 +22,7 @@ public class HotelReservationSystemTest {
 		system.addHotel("Bridgewood", 150, 50,110,50,4);
 		system.addHotel("Ridgewood", 220, 150,100,40,5);
 
-		Hotel hotel = system.findCheapestHotel("2020-09-10", "2020-09-11");
+		Hotel hotel = system.findCheapestHotel("2020-09-10", "2020-09-11",false);
 		assertEquals(hotel.getName(), "Lakewood");
 	}
 
@@ -33,7 +33,7 @@ public class HotelReservationSystemTest {
 		system.addHotel("Bridgewood", 150, 50,110,50,4);
 		system.addHotel("Ridgewood", 220, 150,100,40,5);
 
-		Hotel hotel = system.findCheapestHotel("2020-09-11", "2020-09-12");
+		Hotel hotel = system.findCheapestHotel("2020-09-11", "2020-09-12",false);
 		assertTrue(hotel.getName().matches("(Lakewood|Bridgewood)"));
 	}
 	
@@ -44,7 +44,7 @@ public class HotelReservationSystemTest {
 		system.addHotel("Bridgewood", 150, 50,110,50,4);
 		system.addHotel("Ridgewood", 220, 150,100,40,5);
 		
-		Hotel hotel = system.findCheapestHotel("2020-09-11", "2020-09-12");
+		Hotel hotel = system.findCheapestHotel("2020-09-11", "2020-09-12",false);
 		assertEquals(hotel.getName(),"Bridgewood");
 	}
 	

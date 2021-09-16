@@ -7,8 +7,9 @@ public class Hotel {
 	private int rewardWeekdayRate;
 	private int rewardWeekendRate;
 	private int rating;
-	
-	public Hotel(String name, int regularWeekdayRate, int regularWeekendRate,int rewardWeekdayRate, int rewardWeekendRate,int rating) {
+
+	public Hotel(String name, int regularWeekdayRate, int regularWeekendRate, int rewardWeekdayRate,
+			int rewardWeekendRate, int rating) {
 		this.name = name;
 		this.regularWeekdayRate = regularWeekdayRate;
 		this.regularWeekendRate = regularWeekendRate;
@@ -16,11 +17,19 @@ public class Hotel {
 		this.rewardWeekendRate = rewardWeekendRate;
 		this.rating = rating;
 	}
-	
+
+	public int getWeekdayRate(boolean isReward) {
+		return isReward ? getRewardWeekdayRate() : getRegularWeekdayRate();
+	}
+
+	public int getWeekendRate(boolean isReward) {
+		return isReward ? getRewardWeekendRate() : getRegularWeekendRate();
+	}
+
 	public int getRating() {
 		return rating;
 	}
-	
+
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
