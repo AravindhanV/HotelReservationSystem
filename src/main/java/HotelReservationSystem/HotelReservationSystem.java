@@ -17,7 +17,8 @@ public class HotelReservationSystem {
 		System.out.println("Welcome to hotel management");
 	}
 	
-	public Hotel addHotel(String name, double regularRate) {
-		return new Hotel(name, regularRate);
+	public void addHotel(String name, double regularRate) {
+		hotelList.add(new Hotel(name, regularRate));
+		return;
 	}
 }
