@@ -4,7 +4,12 @@
 package HotelReservationSystem;
 
 public class HotelReservationSystem {
+	
 	public void printHello() {
 		System.out.println("Welcome to hotel management");
+	}
+	
+	public Hotel addHotel(String name, double regularRate) {
+		return new Hotel(name, regularRate);
 	}
 }
