@@ -27,8 +27,8 @@ public class HotelReservationSystem {
 		System.out.println("Welcome to hotel management");
 	}
 
-	public void addHotel(String name, int regularRate, int weekendRate, int rating) {
-		hotelList.add(new Hotel(name, regularRate, weekendRate,rating));
+	public void addHotel(String name, int regularWeekdayRate, int regularWeekendRate,int rewardWeekdayRate, int rewardWeekendRate, int rating) {
+		hotelList.add(new Hotel(name, regularWeekdayRate, regularWeekendRate,rewardWeekdayRate,rewardWeekendRate,rating));
 	}
 
 	public Hotel findCheapestHotel(String date1, String date2) {
@@ -47,7 +47,7 @@ public class HotelReservationSystem {
 		Hotel hotel = hotelList.stream().sorted((h1,h2) -> {
 			return h2.getRating() - h1.getRating();
 		}).min((h1,h2) -> {
-			return (h1.getRegularRate()*noOfWeekdays+h1.getWeekendRate()*noOfWeekends) - (h2.getRegularRate()*noOfWeekdays+h2.getWeekendRate()*noOfWeekends);
+			return (h1.getRegularWeekdayRate()*noOfWeekdays+h1.getRegularWeekendRate()*noOfWeekends) - (h2.getRegularWeekdayRate()*noOfWeekdays+h2.getRegularWeekendRate()*noOfWeekends);
 		}).orElse(null);
 
 		
