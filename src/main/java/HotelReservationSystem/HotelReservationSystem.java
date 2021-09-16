@@ -3,25 +3,51 @@
  */
 package HotelReservationSystem;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 public class HotelReservationSystem {
 	private List<Hotel> hotelList;
-	
+
 	public List<Hotel> getHotelList() {
 		return hotelList;
 	}
-	
+
 	public HotelReservationSystem() {
-		this.hotelList = new LinkedList<Hotel>();
+		this.hotelList = new ArrayList<Hotel>(3);
 	}
-	
+
 	public void printHello() {
 		System.out.println("Welcome to hotel management");
 	}
-	
-	public void addHotel(String name, double regularRate) {
+
+	public void addHotel(String name, int regularRate) {
 		hotelList.add(new Hotel(name, regularRate));
+	}
+
+	public Hotel findCheapestHotel(String date1, String date2) {
+		String[] date1Split = date1.split("-");
+		String[] date2Split = date2.split("-");
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date1Split[0]));
+		calendar.set(Calendar.MONTH, Integer.parseInt(date1Split[1]) - 1);
+		calendar.set(Calendar.YEAR, Integer.parseInt(date1Split[2]));
+		Date firstDate = calendar.getTime();
+
+		calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date2Split[0]));
+		calendar.set(Calendar.MONTH, Integer.parseInt(date2Split[1]) - 1);
+		calendar.set(Calendar.YEAR, Integer.parseInt(date2Split[2]));
+		Date secondDate = calendar.getTime();
+
+		int daysBetween = (int) (Math.ceil((secondDate.getTime() - firstDate.getTime()) / 1000 / 60 / 60 / 24));
+
+		Hotel hotel = hotelList.stream().min((h1,h2) -> {
+			return h1.getRegularRate() - h2.getRegularRate();
+		}).orElse(null);
+		
+		return hotel;
 	}
 }
