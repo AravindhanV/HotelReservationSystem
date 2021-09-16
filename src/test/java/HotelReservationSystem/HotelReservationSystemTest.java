@@ -47,4 +47,15 @@ public class HotelReservationSystemTest {
 		Hotel hotel = system.findCheapestHotel("2020-09-11", "2020-09-12");
 		assertEquals(hotel.getName(),"Bridgewood");
 	}
+	
+	@Test
+	public void findBestRatedHotel_ValidInput_HotelWithBestRating() {
+		HotelReservationSystem system = new HotelReservationSystem();
+		system.addHotel("Lakewood", 110, 90,3);
+		system.addHotel("Bridgewood", 150, 50,4);
+		system.addHotel("Ridgewood", 220, 150,5);
+		
+		Hotel hotel = system.findBestRatedHotel("2020-09-11", "2020-09-12");
+		assertEquals(hotel.getName(),"Ridgewood");
+	}
 }
