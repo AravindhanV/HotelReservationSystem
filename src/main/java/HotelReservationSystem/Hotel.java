@@ -2,10 +2,26 @@ package HotelReservationSystem;
 
 public class Hotel {
 	private String name;
-	private double regularRate;
+	private int regularRate;
 	
-	public Hotel(String name, double regularRate) {
+	public Hotel(String name, int regularRate) {
+		this.setName(name);
+		this.setRegularRate(regularRate);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getRegularRate() {
+		return regularRate;
+	}
+
+	public void setRegularRate(int regularRate) {
 		this.regularRate = regularRate;
 	}
 }

@@ -8,10 +8,21 @@ import static org.junit.Assert.*;
 
 public class HotelReservationSystemTest {
 	@Test
-	public void addHotel_validInput_ListSizeIncreased() {
+	public void addHotel_ValidInput_ListSizeIncreased() {
 		HotelReservationSystem system = new HotelReservationSystem();
 		int oldSize = system.getHotelList().size();
-		system.addHotel("Hotel 1", 80);
+		system.addHotel("Lakewood", 110);
 		assertEquals(oldSize+1,system.getHotelList().size());
+	}
+	
+	@Test
+	public void findCheapestHotel_ValidInput_CheapestHotel() {
+		HotelReservationSystem system = new HotelReservationSystem();
+		system.addHotel("Lakewood", 110);
+		system.addHotel("Bridgewood", 160);
+		system.addHotel("Ridgewood", 220);
+		
+		Hotel hotel = system.findCheapestHotel("10-09-2020", "11-09-2020");
+		assertEquals(hotel.getName(),"Lakewood");
 	}
 }
