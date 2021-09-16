@@ -3,10 +3,12 @@ package HotelReservationSystem;
 public class Hotel {
 	private String name;
 	private int regularRate;
+	private int weekendRate;
 	
-	public Hotel(String name, int regularRate) {
-		this.setName(name);
-		this.setRegularRate(regularRate);
+	public Hotel(String name, int regularRate, int weekendRate) {
+		this.name = name;
+		this.regularRate = regularRate;
+		this.weekendRate = weekendRate;
 	}
 
 	public String getName() {

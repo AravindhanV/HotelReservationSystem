@@ -24,8 +24,8 @@ public class HotelReservationSystem {
 		System.out.println("Welcome to hotel management");
 	}
 
-	public void addHotel(String name, int regularRate) {
-		hotelList.add(new Hotel(name, regularRate));
+	public void addHotel(String name, int regularRate, int weekendRate) {
+		hotelList.add(new Hotel(name, regularRate, weekendRate));
 	}
 
 	public Hotel findCheapestHotel(String date1, String date2) {
