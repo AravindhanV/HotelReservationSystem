@@ -53,4 +53,24 @@ public class HotelReservationSystem {
 		
 		return hotel;
 	}
+	
+	public Hotel findBestRatedHotel(String date1, String date2) {
+		LocalDate startDate = LocalDate.parse(date1);
+		LocalDate endDate = LocalDate.parse(date2).plusDays(1);
+		int noOfWeekdaysCounter=0;
+		int noOfWeekendsCounter=0;
+		for(LocalDate dateCounter=startDate; dateCounter.isBefore(endDate); dateCounter = dateCounter.plusDays(1) ) {
+			if(dateCounter.getDayOfWeek()==DayOfWeek.SATURDAY || dateCounter.getDayOfWeek()==DayOfWeek.SUNDAY)
+				noOfWeekendsCounter++;
+			else
+				noOfWeekdaysCounter++;
+		}
+		final int noOfWeekdays = noOfWeekdaysCounter;
+		final int noOfWeekends = noOfWeekendsCounter;
+		Hotel hotel = hotelList.stream().sorted((h1,h2) -> {
+			return h2.getRating() - h1.getRating();
+		}).findFirst().orElse(null);
+		
+		return hotel;
+	}
 }
