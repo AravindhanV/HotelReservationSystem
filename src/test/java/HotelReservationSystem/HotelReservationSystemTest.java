@@ -22,7 +22,7 @@ public class HotelReservationSystemTest {
 		system.addHotel("Bridgewood", 160,50);
 		system.addHotel("Ridgewood", 220,150);
 		
-		Hotel hotel = system.findCheapestHotel("10-09-2020", "11-09-2020");
+		Hotel hotel = system.findCheapestHotel("2020-09-10", "2020-09-11");
 		assertEquals(hotel.getName(),"Lakewood");
 	}
 }

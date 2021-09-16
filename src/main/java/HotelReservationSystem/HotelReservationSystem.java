@@ -3,11 +3,13 @@
  */
 package HotelReservationSystem;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.time.temporal.*;
 
 public class HotelReservationSystem {
 	private List<Hotel> hotelList;
@@ -29,21 +31,9 @@ public class HotelReservationSystem {
 	}
 
 	public Hotel findCheapestHotel(String date1, String date2) {
-		String[] date1Split = date1.split("-");
-		String[] date2Split = date2.split("-");
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date1Split[0]));
-		calendar.set(Calendar.MONTH, Integer.parseInt(date1Split[1]) - 1);
-		calendar.set(Calendar.YEAR, Integer.parseInt(date1Split[2]));
-		Date firstDate = calendar.getTime();
-
-		calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date2Split[0]));
-		calendar.set(Calendar.MONTH, Integer.parseInt(date2Split[1]) - 1);
-		calendar.set(Calendar.YEAR, Integer.parseInt(date2Split[2]));
-		Date secondDate = calendar.getTime();
-
-		int daysBetween = (int) (Math.ceil((secondDate.getTime() - firstDate.getTime()) / 1000 / 60 / 60 / 24));
-
+		LocalDate parsedDate1 = LocalDate.parse(date1);
+		LocalDate parsedDate2 = LocalDate.parse(date2);
+		long daysBetween = ChronoUnit.DAYS.between(parsedDate1, parsedDate2);
 		Hotel hotel = hotelList.stream().min((h1,h2) -> {
 			return h1.getRegularRate() - h2.getRegularRate();
 		}).orElse(null);
