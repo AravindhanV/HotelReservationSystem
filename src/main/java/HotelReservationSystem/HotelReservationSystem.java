@@ -3,7 +3,15 @@
  */
 package HotelReservationSystem;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class HotelReservationSystem {
+	public List<Hotel> hotelList;
+	
+	public HotelReservationSystem() {
+		this.hotelList = new LinkedList<Hotel>();
+	}
 	
 	public void printHello() {
 		System.out.println("Welcome to hotel management");
