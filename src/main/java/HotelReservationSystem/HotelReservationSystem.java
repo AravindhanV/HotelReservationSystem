@@ -44,8 +44,9 @@ public class HotelReservationSystem {
 		}
 		final int noOfWeekdays = noOfWeekdaysCounter;
 		final int noOfWeekends = noOfWeekendsCounter;
-		long daysBetween = ChronoUnit.DAYS.between(startDate, endDate) +1;
-		Hotel hotel = hotelList.stream().min((h1,h2) -> {
+		Hotel hotel = hotelList.stream().sorted((h1,h2) -> {
+			return h2.getRating() - h1.getRating();
+		}).min((h1,h2) -> {
 			return (h1.getRegularRate()*noOfWeekdays+h1.getWeekendRate()*noOfWeekends) - (h2.getRegularRate()*noOfWeekdays+h2.getWeekendRate()*noOfWeekends);
 		}).orElse(null);
 		
