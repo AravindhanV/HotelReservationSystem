@@ -19,7 +19,7 @@ public class HotelReservationSystemTest {
 	public void findCheapestHotel_ValidInput_CheapestHotel() {
 		HotelReservationSystem system = new HotelReservationSystem();
 		system.addHotel("Lakewood", 110,90);
-		system.addHotel("Bridgewood", 160,50);
+		system.addHotel("Bridgewood", 150,50);
 		system.addHotel("Ridgewood", 220,150);
 		
 		Hotel hotel = system.findCheapestHotel("2020-09-10", "2020-09-11");

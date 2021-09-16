@@ -3,6 +3,7 @@
  */
 package HotelReservationSystem;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,11 +32,21 @@ public class HotelReservationSystem {
 	}
 
 	public Hotel findCheapestHotel(String date1, String date2) {
-		LocalDate parsedDate1 = LocalDate.parse(date1);
-		LocalDate parsedDate2 = LocalDate.parse(date2);
-		long daysBetween = ChronoUnit.DAYS.between(parsedDate1, parsedDate2);
+		LocalDate startDate = LocalDate.parse(date1);
+		LocalDate endDate = LocalDate.parse(date2);
+		int noOfWeekdaysCounter=0;
+		int noOfWeekendsCounter=0;
+		for(LocalDate dateCounter=startDate; startDate.isBefore(endDate); dateCounter.plusDays(1) ) {
+			if(dateCounter.getDayOfWeek()==DayOfWeek.SATURDAY || dateCounter.getDayOfWeek()==DayOfWeek.SUNDAY)
+				noOfWeekdaysCounter++;
+			else
+				noOfWeekendsCounter++;
+		}
+		final int noOfWeekdays = noOfWeekdaysCounter;
+		final int noOfWeekends = noOfWeekendsCounter;
+		long daysBetween = ChronoUnit.DAYS.between(startDate, endDate) +1;
 		Hotel hotel = hotelList.stream().min((h1,h2) -> {
-			return h1.getRegularRate() - h2.getRegularRate();
+			return (h1.getRegularRate()*noOfWeekdays+h1.getWeekendRate()*noOfWeekends) - (h2.getRegularRate());
 		}).orElse(null);
 		
 		return hotel;
