@@ -36,17 +36,17 @@ public class HotelReservationSystem {
 		LocalDate endDate = LocalDate.parse(date2);
 		int noOfWeekdaysCounter=0;
 		int noOfWeekendsCounter=0;
-		for(LocalDate dateCounter=startDate; startDate.isBefore(endDate); dateCounter.plusDays(1) ) {
+		for(LocalDate dateCounter=startDate; dateCounter.isBefore(endDate); dateCounter = dateCounter.plusDays(1) ) {
 			if(dateCounter.getDayOfWeek()==DayOfWeek.SATURDAY || dateCounter.getDayOfWeek()==DayOfWeek.SUNDAY)
-				noOfWeekdaysCounter++;
-			else
 				noOfWeekendsCounter++;
+			else
+				noOfWeekdaysCounter++;
 		}
 		final int noOfWeekdays = noOfWeekdaysCounter;
 		final int noOfWeekends = noOfWeekendsCounter;
 		long daysBetween = ChronoUnit.DAYS.between(startDate, endDate) +1;
 		Hotel hotel = hotelList.stream().min((h1,h2) -> {
-			return (h1.getRegularRate()*noOfWeekdays+h1.getWeekendRate()*noOfWeekends) - (h2.getRegularRate());
+			return (h1.getRegularRate()*noOfWeekdays+h1.getWeekendRate()*noOfWeekends) - (h2.getRegularRate()*noOfWeekdays+h2.getWeekendRate()*noOfWeekends);
 		}).orElse(null);
 		
 		return hotel;
