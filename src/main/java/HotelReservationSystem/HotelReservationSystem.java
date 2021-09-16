@@ -33,7 +33,7 @@ public class HotelReservationSystem {
 
 	public Hotel findCheapestHotel(String date1, String date2) {
 		LocalDate startDate = LocalDate.parse(date1);
-		LocalDate endDate = LocalDate.parse(date2);
+		LocalDate endDate = LocalDate.parse(date2).plusDays(1);
 		int noOfWeekdaysCounter=0;
 		int noOfWeekendsCounter=0;
 		for(LocalDate dateCounter=startDate; dateCounter.isBefore(endDate); dateCounter = dateCounter.plusDays(1) ) {
@@ -49,6 +49,7 @@ public class HotelReservationSystem {
 		}).min((h1,h2) -> {
 			return (h1.getRegularRate()*noOfWeekdays+h1.getWeekendRate()*noOfWeekends) - (h2.getRegularRate()*noOfWeekdays+h2.getWeekendRate()*noOfWeekends);
 		}).orElse(null);
+
 		
 		return hotel;
 	}
