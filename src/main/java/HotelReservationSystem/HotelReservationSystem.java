@@ -7,7 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class HotelReservationSystem {
-	public List<Hotel> hotelList;
+	private List<Hotel> hotelList;
+	
+	public List<Hotel> getHotelList() {
+		return hotelList;
+	}
 	
 	public HotelReservationSystem() {
 		this.hotelList = new LinkedList<Hotel>();
@@ -19,6 +23,5 @@ public class HotelReservationSystem {
 	
 	public void addHotel(String name, double regularRate) {
 		hotelList.add(new Hotel(name, regularRate));
-		return;
 	}
 }

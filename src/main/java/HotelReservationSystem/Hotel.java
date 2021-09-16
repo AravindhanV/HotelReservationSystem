@@ -1,8 +1,8 @@
 package HotelReservationSystem;
 
 public class Hotel {
-	String name;
-	double regularRate;
+	private String name;
+	private double regularRate;
 	
 	public Hotel(String name, double regularRate) {
 		this.name = name;

@@ -10,8 +10,8 @@ public class HotelReservationSystemTest {
 	@Test
 	public void addHotel_validInput_ListSizeIncreased() {
 		HotelReservationSystem system = new HotelReservationSystem();
-		int oldSize = system.hotelList.size();
+		int oldSize = system.getHotelList().size();
 		system.addHotel("Hotel 1", 80);
-		assertEquals(oldSize+1,system.hotelList.size());
+		assertEquals(oldSize+1,system.getHotelList().size());
 	}
 }
