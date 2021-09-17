@@ -5,6 +5,7 @@ package HotelReservationSystem;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,7 +32,7 @@ public class HotelReservationSystem {
 		hotelList.add(new Hotel(name, regularWeekdayRate, regularWeekendRate,rewardWeekdayRate,rewardWeekendRate,rating));
 	}
 
-	public Hotel findCheapestHotel(String date1, String date2, boolean isReward) {
+	public Hotel findCheapestHotel(String date1, String date2, boolean isReward) throws DateTimeParseException{
 		LocalDate startDate = LocalDate.parse(date1);
 		LocalDate endDate = LocalDate.parse(date2).plusDays(1);
 		int noOfWeekdaysCounter=0;
