@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
 public class HotelReservationSystemTest {
 	@Test
 	public void addHotel_ValidInput_ListSizeIncreased() {
-		HotelReservationSystem system = new HotelReservationSystem();
+		HotelReservationService system = new HotelReservationSystemImpl();
 		int oldSize = system.getHotelList().size();
 		system.addHotel("Lakewood", 110, 90, 80, 80, 3);
 		assertEquals(oldSize + 1, system.getHotelList().size());
@@ -19,7 +19,7 @@ public class HotelReservationSystemTest {
 
 	@Test
 	public void findCheapestHotel_ValidInput_CheapestHotel() {
-		HotelReservationSystem system = new HotelReservationSystem();
+		HotelReservationService system = new HotelReservationSystemImpl();
 		system.addHotel("Lakewood", 110, 90, 80, 80, 3);
 		system.addHotel("Bridgewood", 150, 50, 110, 50, 4);
 		system.addHotel("Ridgewood", 220, 150, 100, 40, 5);
@@ -30,7 +30,7 @@ public class HotelReservationSystemTest {
 
 	@Test
 	public void findCheapestHotel_InputWithWeekend_CheapestHotel() {
-		HotelReservationSystem system = new HotelReservationSystem();
+		HotelReservationService system = new HotelReservationSystemImpl();
 		system.addHotel("Lakewood", 110, 90, 80, 80, 3);
 		system.addHotel("Bridgewood", 150, 50, 110, 50, 4);
 		system.addHotel("Ridgewood", 220, 150, 100, 40, 5);
@@ -41,7 +41,7 @@ public class HotelReservationSystemTest {
 
 	@Test
 	public void findCheapestHotel_ValidInput_CheapestHotelWithBestRating() {
-		HotelReservationSystem system = new HotelReservationSystem();
+		HotelReservationService system = new HotelReservationSystemImpl();
 		system.addHotel("Lakewood", 110, 90, 80, 80, 3);
 		system.addHotel("Bridgewood", 150, 50, 110, 50, 4);
 		system.addHotel("Ridgewood", 220, 150, 100, 40, 5);
@@ -52,7 +52,7 @@ public class HotelReservationSystemTest {
 
 	@Test
 	public void findBestRatedHotel_ValidInput_HotelWithBestRating() {
-		HotelReservationSystem system = new HotelReservationSystem();
+		HotelReservationService system = new HotelReservationSystemImpl();
 		system.addHotel("Lakewood", 110, 90, 80, 80, 3);
 		system.addHotel("Bridgewood", 150, 50, 110, 50, 4);
 		system.addHotel("Ridgewood", 220, 150, 100, 40, 5);
@@ -63,18 +63,17 @@ public class HotelReservationSystemTest {
 
 	@Test
 	public void findCheapestHotel_RewardCustomerValidInput_CheapestHotelWithBestRating() {
-		HotelReservationSystem system = new HotelReservationSystem();
+		HotelReservationService system = new HotelReservationSystemImpl();
 		system.addHotel("Lakewood", 110, 90, 80, 80, 3);
 		system.addHotel("Bridgewood", 150, 50, 110, 50, 4);
 		system.addHotel("Ridgewood", 220, 150, 100, 40, 5);
 
-		Hotel hotel = system.findCheapestHotel("2020-09-11", "2020-09-12", false);
-		assertEquals(hotel.getName(), "Ridgewood");
+		Hotel hotel = system.findCheapestHotel("2020-09-11", "2020-09-12", true);
 	}
 
 	@Test(expected = DateTimeParseException.class)
 	public void findCheapestHotel_InvalidDateFormatInput_DateFormatException() {
-		HotelReservationSystem system = new HotelReservationSystem();
+		HotelReservationService system = new HotelReservationSystemImpl();
 		system.addHotel("Lakewood", 110, 90, 80, 80, 3);
 		system.addHotel("Bridgewood", 150, 50, 110, 50, 4);
 		system.addHotel("Ridgewood", 220, 150, 100, 40, 5);

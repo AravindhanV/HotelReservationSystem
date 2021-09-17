@@ -13,14 +13,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.time.temporal.*;
 
-public class HotelReservationSystem {
+public class HotelReservationSystemImpl implements HotelReservationService {
 	private List<Hotel> hotelList;
 
 	public List<Hotel> getHotelList() {
 		return hotelList;
 	}
 
-	public HotelReservationSystem() {
+	public HotelReservationSystemImpl() {
 		this.hotelList = new ArrayList<Hotel>(3);
 	}
 
